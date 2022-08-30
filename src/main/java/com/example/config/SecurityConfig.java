@@ -23,6 +23,8 @@ public class SecurityConfig {
 			.authorizeHttpRequests(authz -> authz
 				.requestMatchers(PathRequest.toStaticResources().atCommonLocations()) 
 					.permitAll()  // /css/**などはログイン無しでアクセス可能
+				.mvcMatchers("/admin")
+					.hasRole("AUTHORITY2")
 				.anyRequest().authenticated()); // その他は認証が必要
 
 		return http.build();

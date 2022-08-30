@@ -55,4 +55,9 @@ public class WelcomeController {
 		return "redirect:/login/success";
 	}
 	
+	@GetMapping("/admin")
+	public String admin() {
+		return "admin_only";
+	}
+	
 }
