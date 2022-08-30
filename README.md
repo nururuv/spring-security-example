@@ -4,6 +4,8 @@ SpringSecurity を導入した実装のサンプル
 
 ## DB SETUP
 
+パスワードはハッシュ化されている、初期投入のパスワードは「pass」
+
 CREATE DATABASE spring_security_test;
 
 CREATE TABLE public.user_info(
