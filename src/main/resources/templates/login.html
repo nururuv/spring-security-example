@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- th:actionはloginProcessingUrlの値と一致させる -->
+	<form th:action="@{/login/process}" method="post">
+		<p class="text-danger mb-1"
+			th:if="${param['error'] != null && session['SPRING_SECURITY_LAST_EXCEPTION'] != null}"
+			th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}">message</p>
+		<div>
+			ユーザー名：
+			<!-- th:nameはusernameParameterの値と一致させる -->
+			<input type="text" th:name="user">
+		</div>
+		<div>
+			パスワード：
+			<!-- th:nameはpasswordParameterの値と一致させる -->
+			<input type="password" th:name="pass">
+		</div>
+		<button type="submit">ログイン</button>
+	</form>
+</body>
+</html>

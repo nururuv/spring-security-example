@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    url:  jdbc:postgresql://localhost:5432/spring_security_test
+    username: postgres
+    password: pass
+    driverClassName: org.postgresql.Driver
+
