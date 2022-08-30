@@ -1,0 +1,9 @@
+package com.example.domain;
+
+import lombok.Data;
+
+@Data
+public class ChangePasswordForm {
+	private String password;
+	private String passwordConfirm;
+}

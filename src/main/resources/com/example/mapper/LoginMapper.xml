@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.LoginMapper">
+	<select id="login" resultMap="loginUser">
+		SELECT
+		user_info.user_name AS user_name
+		,user_info.password AS password
+		, authority.name AS authority_name
+		, user_info.initial_password_flag AS initial_password_flag
+		FROM
+		user_info
+		LEFT JOIN
+		role_authorities
+		ON user_info.role = role_authorities.role_id
+		LEFT JOIN
+		authority
+		ON role_authorities.authority_id = authority.id
+		WHERE
+		user_info.user_name = #{userName}
+		;
+	</select>
+	<resultMap type="com.example.domain.LoginUser" id="loginUser">
+		<result property="userName" column="user_name" />
+		<result property="password" column="password" />
+		<result property="initialPasswordFlag" column="initial_password_flag" />
+		<collection property="authorityList" ofType="java.lang.String">
+			<result column="authority_name" />
+		</collection>
+	</resultMap>
+
+	<update id="changePassword">
+		UPDATE public.user_info
+		SET
+			password = #{password}
+			, initial_password_flag = false
+		WHERE
+			user_name = #{userName};
+	</update>
+</mapper>
